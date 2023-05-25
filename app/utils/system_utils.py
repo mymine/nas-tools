@@ -160,6 +160,7 @@ class SystemUtils:
         软链接
         """
         try:
+            os.unlink(os.path.normpath(dest))
             os.symlink(os.path.normpath(src), os.path.normpath(dest))
             return 0, ""
         except Exception as err:
