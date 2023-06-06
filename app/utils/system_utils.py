@@ -160,7 +160,9 @@ class SystemUtils:
         软链接
         """
         try:
-            os.unlink(os.path.normpath(dest))
+            # 软链接对应文件删除以后，os.path.exists也会返回False，这种情况需要先删除后创建
+            if os.path.islink(dest):
+                os.unlink(os.path.normpath(dest)) 
             os.symlink(os.path.normpath(src), os.path.normpath(dest))
             return 0, ""
         except Exception as err:
