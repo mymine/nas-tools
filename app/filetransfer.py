@@ -731,7 +731,8 @@ class FileTransfer:
                     # 文件存在
                     if file_exist_flag:
                         exist_filenum = exist_filenum + 1
-                        if rmt_mode != RmtMode.SOFTLINK:
+                        ret_file_ext = os.path.splitext(ret_file_path)[-1]
+                        if rmt_mode != RmtMode.SOFTLINK or ret_file_ext == ".strm" :
                             orgin_file_size = os.path.getsize(ret_file_path)
                             if media.size > orgin_file_size and self._filesize_cover or udf_flag:
                                 # 原文件
@@ -762,12 +763,16 @@ class FileTransfer:
                                 handler_flag = True
                             else:
                                 log.warn("【Rmt】文件 %s 已存在" % ret_file_path)
-                                failed_count += 1
-                                continue
+                                # 已存在也按完成处理
+                                #failed_count += 1
+                                #continue
+                                handler_flag = True
                         else:
                             log.warn("【Rmt】文件 %s 已存在" % ret_file_path)
-                            failed_count += 1
-                            continue
+                            # 已存在也按完成处理
+                            #failed_count += 1
+                            #continue
+                            handler_flag = True
                 # 路径不存在
                 else:
                     if not ret_dir_path:
