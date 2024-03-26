@@ -1,5 +1,4 @@
 import re
-import xml.dom.minidom
 from datetime import datetime, timedelta
 from threading import Event
 
@@ -17,6 +16,7 @@ from app.utils import RequestUtils, DomUtils
 from app.utils.types import MediaType, SearchType, RssType
 from config import Config
 from web.backend.web_utils import WebUtils
+import defusedxml.minidom
 
 
 class DoubanRank(_IPluginModule):
@@ -482,7 +482,7 @@ class DoubanRank(_IPluginModule):
             ret_xml = ret.text
             ret_array = []
             # 解析XML
-            dom_tree = xml.dom.minidom.parseString(ret_xml)
+            dom_tree = defusedxml.minidom.parseString(ret_xml)
             rootNode = dom_tree.documentElement
             items = rootNode.getElementsByTagName("item")
             for item in items:

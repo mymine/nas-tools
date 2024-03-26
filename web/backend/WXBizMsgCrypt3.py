@@ -13,9 +13,9 @@ import random
 import socket
 import struct
 import time
-import xml.etree.cElementTree as ET
 
 from Crypto.Cipher import AES
+import defusedxml.ElementTree
 
 # Description:定义错误码含义
 #########################################################################
@@ -90,7 +90,7 @@ class XMLParse:
         @return: 提取出的加密消息字符串
         """
         try:
-            xml_tree = ET.fromstring(xmltext)
+            xml_tree = defusedxml.ElementTree.fromstring(xmltext)
             encrypt = xml_tree.find("Encrypt")
             return WXBizMsgCrypt_OK, encrypt.text
         except Exception as e:

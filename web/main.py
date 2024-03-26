@@ -7,7 +7,6 @@ import re
 import time
 import traceback
 import urllib
-import xml.dom.minidom
 from functools import wraps
 from math import floor
 from pathlib import Path
@@ -49,6 +48,7 @@ from web.backend.user import User
 from web.backend.wallpaper import get_login_wallpaper
 from web.backend.web_utils import WebUtils
 from web.security import require_auth
+import defusedxml.minidom
 
 # 配置文件锁
 ConfigLock = Lock()
@@ -1150,7 +1150,7 @@ def wechat():
                 <AgentID>1</AgentID>
             </xml>            
             """
-            dom_tree = xml.dom.minidom.parseString(sMsg.decode('UTF-8'))
+            dom_tree = defusedxml.minidom.parseString(sMsg.decode('UTF-8'))
             root_node = dom_tree.documentElement
             # 消息类型
             msg_type = DomUtils.tag_value(root_node, "MsgType")

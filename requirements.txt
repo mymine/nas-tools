@@ -112,3 +112,6 @@ websockets==10.3
 Werkzeug==2.2.3
 wsproto==1.2.0
 zhconv==1.4.3
+defusedxml==0.7.1 \
+    --hash=sha256:a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61
+    --hash=sha256:1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69

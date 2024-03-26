@@ -1,9 +1,9 @@
-import xml.dom.minidom
 
 from app.db import MainDb, DbPersist
 from app.db.models import RSSTORRENTS
 from app.utils import RssTitleUtils, StringUtils, RequestUtils, ExceptionUtils, DomUtils
 from config import Config
+import defusedxml.minidom
 
 
 class RssHelper:
@@ -43,7 +43,7 @@ class RssHelper:
             ret_xml = ret.text
             try:
                 # 解析XML
-                dom_tree = xml.dom.minidom.parseString(ret_xml)
+                dom_tree = defusedxml.minidom.parseString(ret_xml)
                 rootNode = dom_tree.documentElement
                 items = rootNode.getElementsByTagName("item")
                 for item in items:
