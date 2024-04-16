@@ -1,5 +1,4 @@
 import os
-import pickle
 import random
 import time
 from functools import lru_cache
@@ -10,6 +9,7 @@ from app.helper import ChromeHelper
 from app.utils import ExceptionUtils, StringUtils, RequestUtils
 from app.utils.commons import singleton
 from config import Config
+import fickling
 
 
 @singleton
@@ -84,7 +84,7 @@ class SiteConf:
             with open(os.path.join(Config().get_inner_config_path(),
                                    "sites.dat"),
                       "rb") as f:
-                self._RSS_SITE_GRAP_CONF = pickle.load(f).get("conf")
+                self._RSS_SITE_GRAP_CONF = fickling.load(f).get("conf")
         except Exception as err:
             ExceptionUtils.exception_traceback(err)
 

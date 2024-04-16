@@ -8,6 +8,7 @@ from threading import RLock
 from app.utils import ExceptionUtils
 from app.utils.commons import singleton
 from config import Config
+import fickling
 
 lock = RLock()
 
@@ -141,7 +142,7 @@ class MetaHelper(object):
         try:
             if os.path.exists(path):
                 with open(path, 'rb') as f:
-                    data = pickle.load(f)
+                    data = fickling.load(f)
                 return data
             return {}
         except Exception as e:

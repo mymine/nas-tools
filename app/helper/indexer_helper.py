@@ -1,9 +1,9 @@
 import os.path
-import pickle
 
 from app.utils import StringUtils, ExceptionUtils
 from app.utils.commons import singleton
 from config import Config
+import fickling
 
 
 @singleton
@@ -18,7 +18,7 @@ class IndexerHelper:
             with open(os.path.join(Config().get_inner_config_path(),
                                    "sites.dat"),
                       "rb") as f:
-                self._indexers = pickle.load(f).get("indexer")
+                self._indexers = fickling.load(f).get("indexer")
         except Exception as err:
             ExceptionUtils.exception_traceback(err)
 
