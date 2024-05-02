@@ -132,7 +132,7 @@ class TMDb(object):
     @staticmethod
     @lru_cache(maxsize=REQUEST_CACHE_MAXSIZE)
     def cached_request(method, url, data, proxies):
-        return requests.request(method, url, data=data, proxies=eval(proxies), verify=False, timeout=10)
+        return requests.request(method, url, data=data, proxies=eval(proxies), verify=True, timeout=10)
 
     def cache_clear(self):
         return self.cached_request.cache_clear()

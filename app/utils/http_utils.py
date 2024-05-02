@@ -70,8 +70,7 @@ class RequestUtils:
             else:
                 return requests.post(url,
                                      data=data,
-                                     verify=False,
-                                     headers=self._headers,
+                                     verify=True, headers=self._headers,
                                      proxies=self._proxies,
                                      timeout=self._timeout,
                                      json=json)
@@ -89,8 +88,7 @@ class RequestUtils:
                                       params=params)
             else:
                 r = requests.get(url,
-                                 verify=False,
-                                 headers=self._headers,
+                                 verify=True, headers=self._headers,
                                  proxies=self._proxies,
                                  timeout=self._timeout,
                                  params=params)
@@ -112,8 +110,7 @@ class RequestUtils:
             else:
                 return requests.get(url,
                                     params=params,
-                                    verify=False,
-                                    headers=self._headers,
+                                    verify=True, headers=self._headers,
                                     proxies=self._proxies,
                                     cookies=self._cookies,
                                     timeout=self._timeout,
@@ -141,8 +138,7 @@ class RequestUtils:
                 return requests.post(url,
                                      data=data,
                                      params=params,
-                                     verify=False,
-                                     headers=self._headers,
+                                     verify=True, headers=self._headers,
                                      proxies=self._proxies,
                                      cookies=self._cookies,
                                      timeout=self._timeout,
