@@ -193,7 +193,7 @@ class Telegram(_IMessageClient):
                     sc_url = "https://api.telegram.org/bot%s/sendPhoto" % self._telegram_token
                     data = {"chat_id": chat_id, "caption": caption, "parse_mode": "Markdown"}
                     files = {"photo": photo_req.content}
-                    res = requests.post(sc_url, proxies=proxies, data=data, files=files)
+                    res = requests.post(sc_url, proxies=proxies, data=data, files=files, timeout=60)
                     flag, msg = _res_parse(res)
                     if flag:
                         return flag, msg
